@@ -16,6 +16,7 @@ def all_odd(numbers):
         >>> all_odd([2, -6, 8])
         []
     """
+    #using list comprehension returning a list with odd numbers from the list of numbers
     odd_number_list = [number for number in numbers if number % 2 != 0]
     return odd_number_list
 
@@ -45,7 +46,8 @@ def print_indices(items):
         3 Volvo
     
     """
-    for idx, item in enumerate(items): #enumerate returns tuples containing the index and value pair for each item in items
+    #enumerate returns tuples containing the index and value pair for each item in items
+    for idx, item in enumerate(items): 
         print idx, item
 
 
@@ -83,7 +85,8 @@ def foods_in_common(foods1, foods2):
         []
 
     """
-    common_items = sorted(list(set(foods1) & set(foods2))) #using a set as set math easily provides a set with common items from both sets
+    #using a set as set math easily provides a set with common items from both sets
+    common_items = sorted(list(set(foods1) & set(foods2))) 
     return common_items
 
 
@@ -103,7 +106,8 @@ def every_other_item(items):
        ... )
        ['you', 'are', 'good', 'at', 'code']
     """
-    alternate_items = items[0::2] #using a slice that moves by 2 at every step
+    #using a slice that moves by 2 at every step
+    alternate_items = items[0::2] 
     return alternate_items
 
 
@@ -130,15 +134,14 @@ def largest_n_items(items, n):
     """
     n_largest_integers = []
     if n > 0:
-        n_largest_integers = sorted(items)[-n:] #first used the sorted function to arrange the list in ascending order 
-        return n_largest_integers                   #made a slice assignment from -n to the end of the sorted list to get the n largest integers
+        #first used the sorted function to arrange the list in ascending order 
+        #made a slice assignment from -n to the end of the sorted list to get the n largest integers
+        n_largest_integers = sorted(items)[-n:] 
+        return n_largest_integers                   
     elif n == 0:
         return []
 
-    # for idx, item in enumerate(items):
-    #     if len(n_largest_integers) < n and item > items[idx]:
-    #         n_largest_integers.append(item) 
-    # return n_largest_integers
+    
 
 
 #####################################################################
