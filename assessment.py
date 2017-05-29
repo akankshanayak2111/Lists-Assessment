@@ -137,7 +137,8 @@ def largest_n_items(items, n):
         #first used the sorted function to arrange the list in ascending order 
         #made a slice assignment from -n to the end of the sorted list to get the n largest integers
         n_largest_integers = sorted(items)[-n:] 
-        return n_largest_integers                   
+        return n_largest_integers  
+    # return empty list if n is 0                 
     elif n == 0:
         return []
 
