@@ -80,14 +80,19 @@ def smallest_int(numbers):
         >>> smallest_int([]) is None
         True
     """
-    for number, idx in range(len(numbers)):
-        if len(numbers) != 0:
-            if number < numbers[idx]:
-                return number
-        elif len(numbers) == 0:
-            return None
-
+    # if the list is empty return None
+    if len(numbers) == 0:
+        return None 
     
+    #setting the smallest int as the first item in numbers:
+    int_smallest = numbers[0]
+    #iterating over the numbers list
+    for number in numbers:
+        #if the list is not empty check if any number is smaller than int_smallest, if yes, rebinding that value to int_smallest
+        if int_smallest > number:
+            int_smallest = number
+    return int_smallest
+            
 
 
 def largest_int(numbers):
@@ -108,12 +113,18 @@ def largest_int(numbers):
         >>> largest_int([]) is None
         True
     """
-    for number, idx in range(len(numbers)):
-        if len(numbers) != 0:
-            if number > numbers[idx]:
-                return number
-        elif len(numbers) == 0:
-            return None
+    # if the list is empty return None
+    if len(numbers) == 0:
+        return None 
+    
+    #setting the largest int as the first item in numbers:
+    int_largest = numbers[0]
+    #iterating over the numbers list
+    for number in numbers:
+        #if the list is not empty check if any number is larger than int_largest, if yes, rebinding that value to int_largest
+        if int_largest < number:
+            int_largest = number
+    return int_largest
     
 
 
@@ -143,8 +154,16 @@ def word_lengths(words):
         >>> word_lengths(["hello", "hey", "hello", "spam"])
         [5, 3, 5, 4]
     """
-
-    return []
+    word_length_list = []
+    #iterating over the words list
+    for word in words:
+        #initializing a counter to count letters in each word
+        count = 0
+        #iterating over letter in each word
+        for letter in word:
+            count +=1
+        word_length_list.append(count)
+    return word_length_list
 
 
 def sum_numbers(numbers):
@@ -287,9 +306,16 @@ def reverse_list(items):
         >>> orig
         ['apple', 'berry', 'cherry']
     """
-    new_list = items[::-1]
-    return new_list
+    reversed_list = []
+    #initializing last index 
+    index_last = len(items)-1
+    #Looping over the list items until we reach the first item
+    while index_last >= 0:
+        #appending the last item in each loop to the reversed_list
+        reversed_list.append(items[index_last])
+        index_last -= 1
 
+    return reversed_list
 
 def reverse_list_in_place(items):
     """Reverse the input list `in place`.
@@ -313,8 +339,20 @@ def reverse_list_in_place(items):
         >>> orig
         ['I', 'love', 'cookies']
     """
-    items[:] =items[::-1]   # https://codereview.stackexchange.com/questions/90892/reversing-the-elements-in-the-list
-    return items
+    #initializing first index and last index
+    index_first = 0
+    index_last = len(items) - 1
+    # Looping over the list until first index equals last (in case of odd number of items) or first index is less than last (in case of even items)
+    while index_first <= index_last:
+        #storing the item at first index in a temporary variable before rebinding first and last items
+        temp_first = items[index_first]
+        items[index_first] = items[index_last]
+        items[index_last] = temp_first
+        #moving the first index forward by one and last index back by one to rebind the next set of items
+        index_first += 1
+        index_last -=1
+    return 
+
 
 
 
@@ -390,19 +428,16 @@ def find_letter_indices(words, letter):
     for word in words:
         #iterating over each letter of each word by index
         for idx in range(len(word)):
-            #checking to see if the letter at any index matches the argument letter
+            #checking to see if the letter at any index matches the argument letter and adding only the first index to the list of indices or adding None
             if word[idx] == letter:
                 list_of_indices.append(idx)
                 break
             elif letter not in word:
-                list_of_indices.append('None')
+                list_of_indices.append(None)
+                break
     return list_of_indices
 
-    # for word in words:
-    #     for char, idx in range(len(word)):
-    #         if char == letter and char not in new_list:
-    #             new_list.append(idx)
-    # return new_list
+    
   
 
 
